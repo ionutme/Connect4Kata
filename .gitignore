@@ -1,7 +1,12 @@
+# VS Code settings folder
 .vscode
 
+# NuGet
 nupkg/
 
+# Build
 bin/
 obj/
 
+# Tests results file
+Results.trx
