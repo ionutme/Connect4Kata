@@ -4,7 +4,7 @@ using Connect4Library;
 namespace Tests
 {
     [TestFixture]
-    public class Tests
+    public class GameTests
     {
         [Test]
         public void Test1()
