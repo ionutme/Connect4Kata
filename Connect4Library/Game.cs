@@ -5,7 +5,7 @@ namespace Connect4Library
     public class Game
     {
         public readonly Board Board;
-        public readonly BoardCheckup BoardCheckup;
+        public readonly BoardCheckup Referee;
         private bool _isConnect4 = false;
         private int _currentPlayer;
         private Tuple<int, int> _currentPosition;
@@ -13,7 +13,7 @@ namespace Connect4Library
         public Game()
         {
             Board = new Board();
-            BoardCheckup = new BoardCheckup(Board);
+            Referee = new BoardCheckup(Board);
 
             _currentPlayer = 1;
         }
@@ -31,7 +31,7 @@ namespace Connect4Library
                 Board.PlaceDisk(location, currentPlayer);
             else return "Column full!";
 
-            if (BoardCheckup.IsConnect4(currentPlayer))
+            if (Referee.IsConnect4(currentPlayer))
                 return $"Player {currentPlayer} wins!";
             else
                 ChangeTurn();   //change current player
