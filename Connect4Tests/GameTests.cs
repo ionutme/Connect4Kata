@@ -7,6 +7,19 @@ namespace Tests
     public class GameTests
     {
         [Test]
+        public void Play_WhenPlacingDiskOnColumn_ThenGameBoardSaveDiskPositionOnExpectedLocation()
+        {
+            var game = new Game();
+
+            Assert.IsTrue(game.Board.IsAvailable(5,3));
+
+            // Act
+            var message = game.play(3);
+
+            Assert.IsFalse(game.Board.IsAvailable(5, 3), "The location were the disk is placed should not be available anymore.");
+        }
+
+        [Test]
         public void Play_WhenPlacingTheFirstDisk_ReturnsPlayerOneHasATurnMessage()
         {
             var game = new Game();

@@ -4,7 +4,7 @@ namespace Connect4Library
 {
     public static class BoardExtensions
     {
-        public static void Print(this GameBoard board, Action<string> writeAction)
+        public static void Print(this Board board, Action<string> writeAction)
         {
             for (int row=0; row<=5; row++)
             {
