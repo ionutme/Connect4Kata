@@ -12,7 +12,7 @@ namespace Connect4Tests.Checkups
         public void Has4Hits_WhenFistDiagonalHas4SameDisks_ReturnsTrue()
         {
             var board = new Board();
-            PlaceDisksOnDiagonal(4, board, Game.Player.One, 3);
+            PlaceDisksOnDiagonal(4, board, Game.Player.One);
 
             var diagonalCheckup = new DiagonalCheckup(board);
 
