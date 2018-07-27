@@ -1,6 +1,6 @@
 using System;
 
-namespace Connect4Library
+namespace Connect4Library.GameBoard
 {
     public static class BoardExtensions
     {

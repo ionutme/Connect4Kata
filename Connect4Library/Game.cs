@@ -5,49 +5,42 @@ namespace Connect4Library
     public class Game
     {
         public readonly Board Board;
-        public readonly BoardCheckup Referee;
-        private bool _isConnect4 = false;
-        private int _currentPlayer;
-        private Tuple<int, int> _currentPosition;
+        public readonly BoardCheckup BoardCheckup;
+        private bool isGameOver = false;
+        private int currentPlayer = 1;
 
         public Game()
         {
             Board = new Board();
-            Referee = new BoardCheckup(Board);
-
-            _currentPlayer = 1;
+            BoardCheckup = new BoardCheckup(Board);
         }
-
-        // ? Command patter
-        // ! Should be Play with cappital P
-        // TODO: refactoring
+        
         public string play(int col)
         {
-            if (_isConnect4) return "Game has finished.";
-            var currentPlayer = _currentPlayer;
+            if (this.isGameOver)
+                return "Game has finished.";
 
             var location = Board.GetNextAvailable(col);
-            if (Board.IsAvailable(location))
-                Board.PlaceDisk(location, currentPlayer);
-            else return "Column full!";
+            if (!Board.IsAvailable(location))
+                return "Column full!";
 
-            if (Referee.IsConnect4(currentPlayer))
-                return $"Player {currentPlayer} wins!";
-            else
-                ChangeTurn();   //change current player
+            Board.PlaceDisk(location, this.currentPlayer);
 
-            return $"Player {currentPlayer} has a turn";
+            if (BoardCheckup.IsConnect4(this.currentPlayer))
+                return $"Player {this.currentPlayer} wins!";
+            
+            return ChangeTurn();
         }
 
-        public void ChangeTurn()
+        public string ChangeTurn()
         {
-            if (_currentPlayer == 1)
-            {
-                _currentPlayer = 2;
-                return;
-            }
+            int previousPlayer = this.currentPlayer;
+            if (previousPlayer == 1)
+                this.currentPlayer = 2;
+            else
+                this.currentPlayer = 1;
 
-            _currentPlayer = 1;
+            return $"Player {previousPlayer} has a turn";
         }
     }
 }

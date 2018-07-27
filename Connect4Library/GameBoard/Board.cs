@@ -7,23 +7,18 @@ namespace Connect4Library
         public const int IndexMaxRows = 5, CountMaxRows = 6;
         public const int IndexMaxCols = 6, CountMaxCols = 7;
 
-        private int?[,] _board = new int?[CountMaxRows, CountMaxCols];
+        private int?[,] board = new int?[CountMaxRows, CountMaxCols];
 
         public int? this[int row, int col]
         {
-            get { return _board[row, col]; }
-            set { _board[row, col] = value; }
+            get { return board[row, col]; }
+            set { board[row, col] = value; }
         }
 
         public void PlaceDisk(Location location, int value)
         {
             if (location != null)
-                this._board[location.Row, location.Column] = value;
-        }
-
-        public bool IsAvailable(int colIndex)
-        {
-            return IsAvailable(GetNextAvailable(colIndex));
+                this.board[location.Row, location.Column] = value;
         }
 
         public bool IsAvailable(int rowIndex, int colIndex)
@@ -53,15 +48,10 @@ namespace Connect4Library
 
         public Location GetAvailable(int rowIndex, int colIndex)
         {
-            if (_board[rowIndex, colIndex] == null)
+            if (board[rowIndex, colIndex] == null)
                 return new Location(rowIndex, colIndex);
 
             return null;
-        }
-
-        public int? GetValue(int rowIndex, int colIndex)
-        {
-            return _board[rowIndex, colIndex];
         }
     }
 }
