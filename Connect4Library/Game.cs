@@ -7,7 +7,8 @@ namespace Connect4Library
         public readonly Board Board;
         public readonly BoardCheckup BoardCheckup;
         private bool isGameOver = false;
-        private int currentPlayer = 1;
+        public enum Player {One = 1, Two = 2};
+        private Player currentPlayer = Player.One;
 
         public Game()
         {
@@ -24,23 +25,23 @@ namespace Connect4Library
             if (!Board.IsAvailable(location))
                 return "Column full!";
 
-            Board.PlaceDisk(location, this.currentPlayer);
+            Board.PlaceDisk(location, (int)this.currentPlayer);
 
-            if (BoardCheckup.IsConnect4(this.currentPlayer))
-                return $"Player {this.currentPlayer} wins!";
+            if (BoardCheckup.IsConnect4((int)this.currentPlayer))
+                return $"Player {(int)this.currentPlayer} wins!";
             
             return ChangeTurn();
         }
 
         public string ChangeTurn()
         {
-            int previousPlayer = this.currentPlayer;
-            if (previousPlayer == 1)
-                this.currentPlayer = 2;
+            var previousPlayer = this.currentPlayer;
+            if (previousPlayer == Player.One)
+                this.currentPlayer = Player.Two;
             else
-                this.currentPlayer = 1;
+                this.currentPlayer = Player.One;
 
-            return $"Player {previousPlayer} has a turn";
+            return $"Player {(int)previousPlayer} has a turn";
         }
     }
 }
