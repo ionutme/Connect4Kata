@@ -7,12 +7,12 @@ namespace Connect4Library
         public const int IndexMaxRows = 5, CountMaxRows = 6;
         public const int IndexMaxCols = 6, CountMaxCols = 7;
 
-        private int?[,] board = new int?[CountMaxRows, CountMaxCols];
+        private readonly int?[,] board = new int?[CountMaxRows, CountMaxCols];
 
         public int? this[int row, int col]
         {
-            get { return board[row, col]; }
-            set { board[row, col] = value; }
+            get => this.board[row, col];
+            set => this.board[row, col] = value;
         }
 
         public void PlaceDisk(Location location, int value)

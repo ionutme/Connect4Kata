@@ -22,18 +22,26 @@ namespace Connect4Library
 
         private int GetRowHitsCount(int value, int row)
         {
-            int hits = 0;
+            int maxHits = 0;
 
+            int hits = 0;
             int col = 0;
-            while (IsHit(row, col, value) &&
-                   col <= Board.IndexMaxCols)
+            while (col <= Board.IndexMaxCols)
             {
-                hits++;
+                if (IsHit(row, col, value))
+                {
+                    hits++;
+                }
+                else
+                {
+                    maxHits = Math.Max(maxHits, hits);
+                    hits = 0;
+                }
 
                 col++;  // move to the next column
             }
 
-            return hits;
+            return Math.Max(maxHits, hits);
         }
     }
 }

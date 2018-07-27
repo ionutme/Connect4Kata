@@ -6,22 +6,23 @@ namespace Connect4Tests.Checkups
 {
     public abstract class CheckupTests
     {
-        protected void PlaceDisksOnColumn(int count, int col, Board board, Game.Player player, int deviation = 0)
+        protected void PlaceDisksOnColumn(int count, int col, Board board, Game.Player player, int dx = 0)
         {
-            if (count + deviation > Board.CountMaxRows)
+            var lowestIndex = Board.CountMaxRows - (count + dx);
+            if (lowestIndex > Board.IndexMaxRows)
                 throw new System.IndexOutOfRangeException(nameof(count));
 
-            var rowsIndexBoundary = Board.CountMaxRows - (count + deviation);
-            for (int row = Board.IndexMaxRows-deviation; row >= rowsIndexBoundary; row--)
+            for (int row = Board.IndexMaxRows-dx; row >= lowestIndex; row--)
                 PlaceDisk(row, col, board, player);
         }
-        protected void PlaceDisksOnRow(int count, int row, Board board, Game.Player player, int deviation = 0)
+
+        protected void PlaceDisksOnRow(int count, int row, Board board, Game.Player player, int dx = 0)
         {
-            if (count + deviation > Board.CountMaxCols)
+            var lowestIndex = count - 1 + dx;
+            if (lowestIndex > Board.IndexMaxCols)
                 throw new System.IndexOutOfRangeException(nameof(count));
 
-            var colsIndexBoundary = Board.CountMaxCols - (count + deviation);
-            for (int col=0 + deviation; col <= colsIndexBoundary; col++)
+            for (int col = dx; col <= lowestIndex; col++)
                 PlaceDisk(row, col, board, player);
         }
 

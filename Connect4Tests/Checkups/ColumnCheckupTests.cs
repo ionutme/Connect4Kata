@@ -7,6 +7,7 @@ namespace Connect4Tests.Checkups
     public class ColumnCheckupTests : CheckupTests
     {
         [Test]
+        [TestOf(typeof(ColumnCheckup))]
         public void Has4Hits_WhenFistColumnHas4SameDisks_ReturnsTrue()
         {
             var board = new Board();
