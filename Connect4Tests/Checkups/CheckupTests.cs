@@ -26,6 +26,16 @@ namespace Connect4Tests.Checkups
                 PlaceDisk(row, col, board, player);
         }
 
+        protected void PlaceDisksOnDiagonal(int count, Board board, Game.Player player, int dx = 0)
+        {
+            var lowestIndex = count - 1 + dx;
+            if (lowestIndex > Board.IndexMaxRows)
+                throw new System.IndexOutOfRangeException(nameof(count));
+
+            for (int diag = dx; diag <= lowestIndex; diag++)
+                PlaceDisk(diag, diag, board, player);
+        }
+
         protected static string GetBoardPrint(Board board)
         {
             var boardPrint = new StringBuilder().AppendLine("THE BOARD");
