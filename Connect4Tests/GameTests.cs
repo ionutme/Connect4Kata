@@ -1,7 +1,7 @@
-using NUnit.Framework;
 using Connect4Library;
+using NUnit.Framework;
 
-namespace Tests
+namespace Connect4Tests
 {
     [TestFixture]
     public class GameTests

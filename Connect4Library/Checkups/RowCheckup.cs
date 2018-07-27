@@ -12,21 +12,28 @@ namespace Connect4Library
 
             for (var row = 0; row <= Board.IndexMaxRows; row++)
             {
-                int hits = 0;
-
-                int col = 0;
-                while(col <= Board.IndexMaxCols &&
-                      this.board[row, col] == value)
-                {
-                    hits++;
-
-                    col++; // move to the next column
-                }
+                int hits = GetRowHitsCount(value, row);
 
                 maxHits = Math.Max(maxHits, hits);
             }
 
             return maxHits;
+        }
+
+        private int GetRowHitsCount(int value, int row)
+        {
+            int hits = 0;
+
+            int col = 0;
+            while (IsHit(row, col, value) &&
+                   col <= Board.IndexMaxCols)
+            {
+                hits++;
+
+                col++;  // move to the next column
+            }
+
+            return hits;
         }
     }
 }

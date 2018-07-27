@@ -1,6 +1,10 @@
 # VS Code settings folder
 .vscode
 
+# Visual Studio
+.vs
+*.csproj.DotSettings
+
 # NuGet
 nupkg/
 

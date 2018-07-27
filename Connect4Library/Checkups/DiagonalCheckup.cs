@@ -10,28 +10,13 @@ namespace Connect4Library
         {
             int maxHits = 0;
 
-            int hits;
             for (int col = 0; col <= Board.IndexMaxCols; col++)
             {
                 for (int row = 0; row <= Board.IndexMaxRows; row++)
                 {
-                    hits = 0;
-
-                    if (this.board[row, col] == value)
+                    if (IsHit(row, col, value))
                     {
-                        hits++;
-
-                        int nextRow = row + 1;
-                        int nextCol = col + 1;
-                        while (nextRow <= Board.IndexMaxRows &&
-                               nextCol <= Board.IndexMaxCols &&
-                               this.board[nextRow, nextCol] == value)
-                        {
-                            hits++;
-
-                            nextRow++;
-                            nextCol++;
-                        }
+                        int hits = GetDiagonalHitsCount(value, row, col);
 
                         maxHits = Math.Max(maxHits, hits);
                     }
@@ -39,6 +24,26 @@ namespace Connect4Library
             }
 
             return maxHits;
+        }
+
+        private int GetDiagonalHitsCount(int value, int row, int col)
+        {
+            int hits = 1;
+
+            int nextRow = row + 1;
+            int nextCol = col + 1;
+
+            while (IsHit(row, col, value) &&
+                   nextRow <= Board.IndexMaxRows &&
+                   nextCol <= Board.IndexMaxCols)
+            {
+                hits++;
+
+                nextRow++;
+                nextCol++;
+            }
+
+            return hits;
         }
     }
 }

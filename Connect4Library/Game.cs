@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Connect4Library
+﻿namespace Connect4Library
 {
     public class Game
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Connect4Library;
+using Connect4Library.GameBoard;
 
 namespace Connect4Program
 {

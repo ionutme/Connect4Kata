@@ -6,7 +6,7 @@ namespace Connect4Library
 {
     public class BoardCheckup
     {
-        private List<Checkup> checkups;
+        private readonly List<Checkup> checkups;
 
         public BoardCheckup(Board board)
         {
