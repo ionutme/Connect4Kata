@@ -10,7 +10,7 @@ namespace Connect4Library
             this.board = board;
         }
 
-        public bool Check(int value)
+        public bool Has4Hits(int value)
         {
             var maxHitCount = GetMaxHitsCount(value);
             if (maxHitCount >= WinningCheckCount)
