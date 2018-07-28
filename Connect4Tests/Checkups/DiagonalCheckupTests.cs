@@ -20,6 +20,7 @@ namespace Connect4Tests.Checkups
 
             Console.WriteLine(GetBoardPrint(board));
         }
+
         [Test]
         [TestOf(typeof(DiagonalCheckup))]
         public void Has4Hits_WhenDiagonalHas1stDiskDifferentFromTheRest_ReturnsTrue()
@@ -31,6 +32,21 @@ namespace Connect4Tests.Checkups
             var diagonalCheckup = new DiagonalCheckup(board);
 
             Assert.IsTrue(diagonalCheckup.Has4Hits((int)Game.Player.One), GetBoardPrint(board));
+        }
+
+        
+        [Test]
+        [TestOf(typeof(DiagonalCheckup))]
+        public void Has4Hits_WhenDiagonalHas2stDiskDifferentFromTheRest_ReturnsTrue()
+        {
+            var board = new Board();
+            PlaceDisksOnDiagonal(1, board, Game.Player.One);
+            PlaceDisksOnDiagonal(1, board, Game.Player.Two, 1);
+            PlaceDisksOnDiagonal(4, board, Game.Player.One, 2);
+
+            var diagonalCheckup = new DiagonalCheckup(board);
+
+            Assert.True(diagonalCheckup.Has4Hits((int)Game.Player.One), GetBoardPrint(board));
 
             Console.WriteLine(GetBoardPrint(board));
         }
