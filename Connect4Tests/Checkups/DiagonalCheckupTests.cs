@@ -9,7 +9,7 @@ namespace Connect4Tests.Checkups
     {
         [Test]
         [TestOf(typeof(DiagonalCheckup))]
-        public void Has4Hits_WhenFistDiagonalHas4SameDisks_ReturnsTrue()
+        public void Has4Hits_WhenDiagonalHas4SameDisks_ReturnsTrue()
         {
             var board = new Board();
             PlaceDisksOnDiagonal(4, board, Game.Player.One);
@@ -17,6 +17,20 @@ namespace Connect4Tests.Checkups
             var diagonalCheckup = new DiagonalCheckup(board);
 
             Assert.IsTrue(diagonalCheckup.Has4Hits((int)Game.Player.One));
+
+            Console.WriteLine(GetBoardPrint(board));
+        }
+        [Test]
+        [TestOf(typeof(DiagonalCheckup))]
+        public void Has4Hits_WhenDiagonalHas1stDiskDifferentFromTheRest_ReturnsTrue()
+        {
+            var board = new Board();
+            PlaceDisksOnDiagonal(1, board, Game.Player.Two);
+            PlaceDisksOnDiagonal(4, board, Game.Player.One, 1);
+
+            var diagonalCheckup = new DiagonalCheckup(board);
+
+            Assert.IsTrue(diagonalCheckup.Has4Hits((int)Game.Player.One), GetBoardPrint(board));
 
             Console.WriteLine(GetBoardPrint(board));
         }

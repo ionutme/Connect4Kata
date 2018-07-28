@@ -28,30 +28,20 @@ namespace Connect4Library
 
         private int GetDiagonalHitsCount(int value, int row, int col)
         {
-            int maxHits = 1;
+            int hits = 0;
 
-            int hits = 1;
-            int nextRow = row + 1;
-            int nextCol = col + 1;
+            do
+            {   
+                hits++;
 
-            while (nextRow <= Board.IndexMaxRows &&
-                   nextCol <= Board.IndexMaxCols)
-            {
-                if (IsHit(row, col, value))
-                {
-                    hits++;
-                }
-                else
-                {
-                    maxHits = Math.Max(maxHits, hits);
-                    hits = 0;
-                }
-
-                nextRow++;
-                nextCol++;
+                row++;
+                col++;
             }
+            while(row <= Board.IndexMaxRows &&
+                  row <= Board.IndexMaxCols &&
+                  IsHit(row, col, value));
 
-            return Math.Max(maxHits, hits);
+            return hits;
         }
     }
 }
